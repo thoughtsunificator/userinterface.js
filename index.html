@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta charset="utf-8">
+    <title>Home - Documentation</title>
+    
+    
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
+    <script src="scripts/nav.js" defer></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav >
+    
+    <input type="text" id="nav-search" placeholder="Search" />
+    
+    <h2><a href="index.html">Home</a></h2><h2><a href="https://github.com/thoughtsunificator/userinterface.js" target="_blank" >Github</a></h2><h3>Global</h3><ul><li><a href="global.html#appendChild">appendChild</a></li><li><a href="global.html#insertBefore">insertBefore</a></li><li><a href="global.html#removeElement">removeElement</a></li><li><a href="global.html#replaceElement">replaceElement</a></li><li><a href="global.html#updateElement">updateElement</a></li><li><a href="global.html#wrapElement">wrapElement</a></li><li><a href="global.html#clearListeners">clearListeners</a></li><li><a href="global.html#model">model</a></li><li><a href="global.html#bind">bind</a></li><li><a href="global.html#runModel">runModel</a></li><li><a href="global.html#createElement">createElement</a></li><li><a href="global.html#getModelProperties">getModelProperties</a></li><li><a href="global.html#listen">listen</a></li><li><a href="global.html#removeListener">removeListener</a></li><li><a href="global.html#announce">announce</a></li></ul>
+</nav>
+
+<div id="main">
+    
+
+    
+
+
+
+    
+
+
+    <section class="package">
+        <h3> </h3>		
+    </section>
+
+
+
+
+
+
+
+
+
+    
+
+
+
+    <section class="readme usertext">
+        <article><h1 id="userinterface.js">userinterface.js <a href="https://travis-ci.com/thoughtsunificator/userinterface.js"><img src="https://travis-ci.com/thoughtsunificator/userinterface.js.svg?branch=master" alt="Build Status"></a></h1>
+<p>Small library to build front-end apps.</p>
+<p>userinterface.js was built around the idea that logic relating to how the visual looks and how the visual works should be distinguished.</p>
+<h2 id="summary">Summary</h2>
+<ul>
+<li><a href="#getting-started">Getting started</a>
+<ul>
+<li><a href="#installing">Installing</a>
+<ul>
+<li><a href="#scaffold">Scaffold</a></li>
+<li><a href="#standalone">Standalone</a></li>
+</ul>
+</li>
+<li><a href="#model">Model</a>
+<ul>
+<li><a href="#basic-model">Basic model</a></li>
+<li><a href="#children">Children</a></li>
+<li><a href="#callback">Callback</a></li>
+<li><a href="#processed-properties">Processed properties</a></li>
+</ul>
+</li>
+<li><a href="#binding">Binding</a></li>
+<li><a href="#methods">Methods</a></li>
+<li><a href="#objects">Objects</a></li>
+<li><a href="#listeners">Listeners</a>
+<ul>
+<li><a href="#main-object">Main object</a></li>
+<li><a href="#listening-to-events">Listening to events</a></li>
+<li><a href="#announcing-events">Announcing events</a></li>
+<li><a href="#removing-event-listeners">Removing event listeners</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#api">API</a></li>
+<li><a href="#common-errors">Common errors</a></li>
+<li><a href="#collection">Collection</a></li>
+<li><a href="#extensions">Extensions</a></li>
+<li><a href="#demos">Demos</a></li>
+<li><a href="#running-the-tests">Running the tests</a></li>
+</ul>
+<h2 id="getting-started">Getting started</h2>
+<h3 id="installing">Installing</h3>
+<h4 id="scaffold">Scaffold</h4>
+<p>See <a href="https://github.com/thoughtsunificator/userinterface.js-skeleton">https://github.com/thoughtsunificator/userinterface.js-skeleton</a>.</p>
+<h4 id="standalone">Standalone</h4>
+<p><code>git submodule add https://github.com/thoughtsunificator/userinterface.js.git lib/userinterface.js</code></p>
+<p>Add userinterface.js to the head section of your web page:</p>
+<pre class="prettyprint source lang-html"><code>&lt;script src=&quot;./lib/userinterface.js/src/userinterface.js&quot;>&lt;/script>
+</code></pre>
+<h3 id="model">Model</h3>
+<p>A <code>Model</code> is an object representation of a <a href="https://developer.mozilla.org/en-US/docs/Web/API/Node">Node</a>.
+It has three required properties depending on the <a href="#methods">method</a>: <code>name</code>, <code>method</code> and <code>properties</code> or <code>callback</code>,</p>
+<p>The <code>name</code> property will be the identifier of your model it will be used whenever you need to run your model but also to associate a binding to your model.
+The <code>method</code> property will describe how your model should be ran.
+The <code>properties</code> and <code>callback</code> properties will contain the properties of your Elements.</p>
+<p>A <code>Model</code> often goes along with a <a href="#Binding">Binding</a> and an <a href="#Object">Object</a>.</p>
+<h4 id="basic-model">Basic model</h4>
+<p>Here we create a model named <code>simple model</code> using the <a href="#methods">method</a> <code>appendChild</code> it has a one <code>LI</code> <a href="https://developer.mozilla.org/en-US/docs/Web/API/Element">element</a> child. <code>LI</code> has the className <code>simplemodel</code> and textContent <code>My first simple model</code>.
+This model uses the <code>textContent</code>, <code>className</code> and <code>tagName</code> propertie however you might use any Element properties the DOM API offers.</p>
+<p><code>src/userinterface/simplemodel.js</code></p>
+<pre class="prettyprint source lang-js"><code>UserInterface.model({
+	name: &quot;simplemodel&quot;,
+	method: UserInterface.appendChild,
+	properties: {
+		tagName: &quot;li&quot;, // required
+		className: &quot;simplemodel&quot;,
+		textContent: &quot;My first simple model&quot;
+	}
+});
+</code></pre>
+<pre class="prettyprint source lang-js"><code>UserInterface.runModel(&quot;simplemodel&quot;, { parentNode: document.querySelector(&quot;ul&quot;) });
+</code></pre>
+<p>Output:</p>
+<pre class="prettyprint source lang-html"><code>&lt;ul>
+	&lt;li class=&quot;simplemodel&quot;>My first simple model&lt;/li>
+&lt;/ul>
+</code></pre>
+<h4 id="children">Children</h4>
+<p>In the previous example we created a simple model, but what if we wanted to do more and add some children to it ?
+The <code>children</code> property is here for that, it is an Array where you can specify child elements.</p>
+<p><code>src/userinterface/children.js</code></p>
+<pre class="prettyprint source lang-js"><code>UserInterface.model({
+	name: &quot;children&quot;,
+	method: UserInterface.appendChild,
+	properties: {
+		tagName: &quot;div&quot;,
+		className: &quot;model&quot;,
+		children: [
+			{
+				tagName: &quot;div&quot;,
+				className: &quot;child&quot;,
+				textContent: &quot;My first child&quot;
+				// and so on..
+			}
+		]
+	}
+});
+</code></pre>
+<pre class="prettyprint source lang-js"><code>UserInterface.runModel(&quot;children&quot;, { parentNode: document.body });
+</code></pre>
+<p>Output:</p>
+<pre class="prettyprint source lang-html"><code>&lt;body>
+	&lt;div class=&quot;model&quot;>
+		&lt;div class=&quot;child&quot;>My first child&lt;/div>
+	&lt;/div>
+&lt;/body>
+</code></pre>
+<h4 id="callback">Callback</h4>
+<p>Models are required to have either the <code>properties</code> property or <code>callback</code> property, but exactly what does the <code>callback</code> property do ?
+It is used when you want to echo some data in your model.</p>
+<p>For example here, we have a model called <code>echomodel</code> that has the <code>callback</code> property. This property works the same as the <code>properties</code> property does except that an extra step is added before your model is ran.
+The <code>callback</code> will return a <code>properties</code> object accordingly to the data you passed through <code>runModel</code>.</p>
+<p><code>src/userinterface/echomodel.js</code></p>
+<pre class="prettyprint source lang-js"><code>UserInterface.model(
+	name: &quot;echomodel&quot;,
+	method: UserInterface.appendChild,
+	callback: data => ({
+		tagName: &quot;p&quot;,
+		className: &quot;echomodel&quot;,
+		textContent: &quot;My &quot;+data.text+&quot; model&quot;
+	})
+);
+</code></pre>
+<pre class="prettyprint source lang-js"><code>UserInterface.runModel(&quot;echomodel&quot;, { parentNode: document.body, data: {&quot;text&quot;: &quot;echo&quot; } });
+</code></pre>
+<p>Output:</p>
+<pre class="prettyprint source lang-html"><code>&lt;p class=&quot;echomodel&quot;>My echo model&lt;/p>
+</code></pre>
+<h4 id="processed-properties">Processed properties</h4>
+<ul>
+<li><code>children</code> Add children to an element</li>
+</ul>
+<h3 id="binding">Binding</h3>
+<p>A <code>Binding</code> is a callback function that, when bound to a model, is automatically called whenever the model has ran.
+<code>Bindings</code> will make your models more alive, an example of that would be adding an event listener to your model, that is the place where you will be doing it.</p>
+<p>You can also do much more such as using event listeners to connect all of your models together!</p>
+<p>A Binding is way to give life to your models enabling them to do things whenever their respective method is executed.
+That means if you want to add a listener to an Element that's where you will be doing it.</p>
+<p>In this example we will change the textContent of our model root element.</p>
+<p><code>src/userinterface/button.js</code></p>
+<pre class="prettyprint source lang-js"><code>UserInterface.model({
+	name: &quot;button&quot;,
+	method: UserInterface.appendChild,
+	properties: {
+		tagName: &quot;button&quot;
+	}
+});
+
+UserInterface.bind(&quot;button&quot;, function(element) {
+	element.textContent = &quot;bound&quot;;
+});
+</code></pre>
+<pre class="prettyprint source lang-js"><code>UserInterface.runModel(&quot;button&quot;, { parentNode: document.body });
+</code></pre>
+<p>Output:</p>
+<pre class="prettyprint source lang-html"><code>&lt;button>bound&lt;/button>
+</code></pre>
+<h3 id="methods">Methods</h3>
+<ul>
+<li>
+<p><code>appendChild</code> Append your model to the target</p>
+</li>
+<li>
+<p><code>insertBefore</code> Insert your model before the target</p>
+</li>
+<li>
+<p><code>removeElement</code> Remove the target</p>
+</li>
+<li>
+<p><code>replaceElement</code> Replace the target with your model</p>
+</li>
+<li>
+<p><code>updateElement</code> Update the target according to your model</p>
+</li>
+<li>
+<p><code>wrapElement</code> Wrap the target inside your model</p>
+</li>
+<li>
+<p><code>removeListeners</code> Remove the listeners of the target</p>
+</li>
+</ul>
+<h3 id="objects">Objects</h3>
+<p><code>Objects</code> are the backbone of your models they will store and manipulate data for your <code>Binding</code>.
+That's where you want to hide the complicated stuff.</p>
+<h3 id="listeners">Listeners</h3>
+<p>Listeners enable intercommunication for your models.</p>
+<h4 id="main-object">Main object</h4>
+<p>You usually wants to have a <code>main object</code> that you will pass to most of your models so that they communicate with each other through a central.</p>
+<p>Note that you are not forced to have one and you could have multiple observables and still be able to handle inter-model communication.</p>
+<p>Most of the time we call it <code>application</code>.</p>
+<h4 id="listening-to-events">Listening to events</h4>
+<p>In this example we are creating and running a model called <code>myModel</code> that will listen for the event <code>greeting</code> on through the <code>application</code> context.</p>
+<p>A Context represent a reserved area (a channel) that events will be bound to, they're often represented as an instance of an object but could pretty much be anything.</p>
+<p><code>src/userinterface/my-model.js</code></p>
+<pre class="prettyprint source lang-js"><code>UserInterface.model({
+	name: &quot;myModel&quot;,
+	method: UserInterface.appendChild,
+	properties: {
+		tagName: &quot;div&quot;
+	}
+});
+UserInterface.bind(&quot;myModel&quot;, function(element, application) {
+
+	UserInterface.listen(application, &quot;greeting&quot;, async (message) => {
+		console.log(message)
+	})
+
+});
+</code></pre>
+<pre class="prettyprint source lang-js"><code>const application = {}
+
+UserInterface.runModel(&quot;myModel&quot;, { parentNode: document.body, bindingArgs: [application] });
+</code></pre>
+<p>For the moment we are only listening to the <code>greeting</code> event, we haven't announced anything to it yet.</p>
+<h4 id="announcing-events">Announcing events</h4>
+<p>In the previous example we setup a <code>greeting</code> listener on <code>application</code>.</p>
+<p>Now, let's try to announce to the event.</p>
+<p><code>src/userinterface/another-model.js</code></p>
+<pre class="prettyprint source lang-js"><code>UserInterface.model({
+	name: &quot;anotherModel&quot;,
+	method: UserInterface.appendChild,
+	properties: {
+		tagName: &quot;div&quot;
+	}
+});
+UserInterface.bind(&quot;anotherModel&quot;, function(element, application) {
+
+	UserInterface.announce(application, &quot;greeting&quot;, &quot;Hello!&quot;);
+
+});
+</code></pre>
+<pre class="prettyprint source lang-js"><code>const application = {}
+
+UserInterface.runModel(&quot;myModel&quot;, { parentNode: document.body, bindingArgs: [application] });
+UserInterface.runModel(&quot;anotherModel&quot;, { parentNode: document.body, bindingArgs: [application] });
+</code></pre>
+<p>If everything went well you should be able see a <code>Hello!</code> log message in the console.</p>
+<h4 id="removing-event-listeners">Removing event listeners</h4>
+<p>Sometimes you might want your model to be dynamically added and removed, meaning that it will be added upon an action and removed upon another action.</p>
+<p>Usually what you want to do is to create <code>_listener</code> variable and push all the listeners to this array and then remove them as needed using <code>forEach</code> for example.</p>
+<p>In this example, we create a listener <code>message</code> and remove it whenever the event <code>done</code> is emitted.</p>
+<pre class="prettyprint source lang-javascript"><code>UserInterface.bind(&quot;myDynamicModel&quot;, function(element, application) {
+
+	const _listeners = []
+
+	_listeners.push(UserInterface.listen(application, &quot;message&quot;, async data => {
+		console.log(data)
+	}))
+
+	_listeners(UserInterface.listen(application, &quot;done&quot;, async () => {
+		_listeners.forEach(listener => UserInterface.removeListener(listener))
+	}))
+
+})
+</code></pre>
+<h2 id="api">API</h2>
+<p>You can read the API by visiting <a href="https://thoughtsunificator.github.io/userinterface.js">https://thoughtsunificator.github.io/userinterface.js</a>.</p>
+<h2 id="common-errors">Common errors</h2>
+<h3 id="cannot-set-property-'binding'-of-undefined">Cannot set property 'binding' of undefined</h3>
+<p>UserInterface.js could not find the model specified when calling <code>UserInterface.bind</code>.</p>
+<h3 id="cannot-destructure-property-'method'-of-'model'-as-it-is-undefined.">Cannot destructure property 'method' of 'model' as it is undefined.</h3>
+<p>UserInterface.js could not find the model specified when calling <code>UserInterface.runModel</code>.</p>
+<p>Feel free to <a href="https://github.com/thoughtsunificator/userinterface.js/issues">open an issue</a> if you need assistance.</p>
+<h2 id="collection">Collection</h2>
+<p>userinterface.js also provides a collection that contains a few basic models to get you started. See <a href="https://github.com/thoughtsunificator/userinterface.js-collection">https://github.com/thoughtsunificator/userinterface.js-collection</a>.</p>
+<h2 id="extensions">Extensions</h2>
+<p>See <a href="https://github.com/topics/userinterface-js-extension">https://github.com/topics/userinterface-js-extension</a>.</p>
+<h2 id="demos">Demos</h2>
+<p>See <a href="https://github.com/topics/userinterface-js-demo">https://github.com/topics/userinterface-js-demo</a>.</p>
+<h2 id="testing">Testing</h2>
+<ul>
+<li><code>npm install</code></li>
+<li><code>npm test</code></li>
+</ul></article>
+    </section>
+
+
+
+
+
+
+    
+    
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.7</a> on Sun May 30 2021 12:26:53 GMT+0200 (Central European Summer Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/polyfill.js"></script>
+<script src="scripts/linenumber.js"></script>
+
+<script src="scripts/search.js" defer></script>
+
+
+
+</body>
+</html>
