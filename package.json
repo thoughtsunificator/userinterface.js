@@ -1,0 +1,26 @@
+{
+	"name": "userinterface.js",
+	"version": "1.4.2",
+	"scripts": {
+		"test": "nodeunit",
+		"generate-docs": "jsdoc --configure .jsdoc.json --verbose"
+	},
+	"devDependencies": {
+		"docdash": "^1.2.0",
+		"eslint": "^7.0.0",
+		"jsdoc": "^3.6.4",
+		"jsdom": "^13.2.0",
+		"nodeunit": "^0.11.3"
+	},
+	"description": "Small library to build front-end apps",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/thoughtsunificator/userinterface.js.git"
+	},
+	"author": "Romain Lebesle <oss@thoughtsunificator.me> (https://thoughtsunificator.me)",
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/thoughtsunificator/userinterface.js/issues"
+	},
+	"homepage": "https://github.com/thoughtsunificator/userinterface.js#readme"
+}
