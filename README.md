@@ -4,32 +4,6 @@ Small library to build front-end apps.
 
 userinterface.js was built around the idea that logic relating to how the visual looks and how the visual works should be distinguished.
 
-## Summary
-
-- [Getting started](#getting-started)
-	- [Installing](#installing)
-		- [Scaffold](#scaffold)
-		- [Standalone](#standalone)
-	- [Model](#model)
-		- [Basic model](#basic-model)
-		- [Children](#children)
-		- [Callback](#callback)
-		- [Processed properties](#processed-properties)
-	- [Binding](#binding)
-	- [Methods](#methods)
-	- [Objects](#objects)
-	- [Listeners](#listeners)
-		- [Main object](#main-object)
-		- [Listening to events](#listening-to-events)
-		- [Announcing events](#announcing-events)
-		- [Removing event listeners](#removing-event-listeners)
-- [API](#api)
-- [Common errors](#common-errors)
-- [Collection](#collection)
-- [Extensions](#extensions)
-- [Demos](#demos)
-- [Running the tests](#running-the-tests)
-
 ## Getting started
 
 ### Installing
