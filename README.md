@@ -1,4 +1,4 @@
-# userinterface.js [![Build Status](https://travis-ci.com/thoughtsunificator/userinterface.js.svg?branch=master)](https://travis-ci.com/thoughtsunificator/userinterface.js) 
+# userinterface.js
 
 Small library to build front-end apps.
 
