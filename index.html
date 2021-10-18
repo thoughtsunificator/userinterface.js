@@ -81,51 +81,51 @@ The <code>properties</code> and <code>callback</code> properties will contain th
 <p>Here we create a model named <code>simple model</code> using the <a href="#methods">method</a> <code>appendChild</code> it has a one <code>LI</code> <a href="https://developer.mozilla.org/en-US/docs/Web/API/Element">element</a> child. <code>LI</code> has the className <code>simplemodel</code> and textContent <code>My first simple model</code>.
 This model uses the <code>textContent</code>, <code>className</code> and <code>tagName</code> propertie however you might use any Element properties the DOM API offers.</p>
 <p><code>src/userinterface/simplemodel.js</code></p>
-<pre class="prettyprint source lang-js"><code>UserInterface.model({
-	name: &quot;simplemodel&quot;,
-	method: UserInterface.appendChild,
-	properties: {
-		tagName: &quot;li&quot;, // required
-		className: &quot;simplemodel&quot;,
-		textContent: &quot;My first simple model&quot;
-	}
+<pre class="prettyprint source lang-javascript"><code>UserInterface.model({
+  name: &quot;simplemodel&quot;,
+  method: UserInterface.appendChild,
+  properties: {
+    tagName: &quot;li&quot;, // required
+    className: &quot;simplemodel&quot;,
+    textContent: &quot;My first simple model&quot;
+  }
 });
 </code></pre>
-<pre class="prettyprint source lang-js"><code>UserInterface.runModel(&quot;simplemodel&quot;, { parentNode: document.querySelector(&quot;ul&quot;) });
+<pre class="prettyprint source lang-javascript"><code>UserInterface.runModel(&quot;simplemodel&quot;, { parentNode: document.querySelector(&quot;ul&quot;) });
 </code></pre>
 <p>Output:</p>
 <pre class="prettyprint source lang-html"><code>&lt;ul>
-	&lt;li class=&quot;simplemodel&quot;>My first simple model&lt;/li>
+  &lt;li class=&quot;simplemodel&quot;>My first simple model&lt;/li>
 &lt;/ul>
 </code></pre>
 <h4 id="children">Children</h4>
 <p>In the previous example we created a simple model, but what if we wanted to do more and add some children to it ?
 The <code>children</code> property is here for that, it is an Array where you can specify child elements.</p>
 <p><code>src/userinterface/children.js</code></p>
-<pre class="prettyprint source lang-js"><code>UserInterface.model({
-	name: &quot;children&quot;,
-	method: UserInterface.appendChild,
-	properties: {
-		tagName: &quot;div&quot;,
-		className: &quot;model&quot;,
-		children: [
-			{
-				tagName: &quot;div&quot;,
-				className: &quot;child&quot;,
-				textContent: &quot;My first child&quot;
-				// and so on..
-			}
-		]
-	}
+<pre class="prettyprint source lang-javascript"><code>UserInterface.model({
+  name: &quot;children&quot;,
+  method: UserInterface.appendChild,
+  properties: {
+    tagName: &quot;div&quot;,
+    className: &quot;model&quot;,
+    children: [
+      {
+        tagName: &quot;div&quot;,
+        className: &quot;child&quot;,
+        textContent: &quot;My first child&quot;
+        // and so on..
+      }
+    ]
+  }
 });
 </code></pre>
-<pre class="prettyprint source lang-js"><code>UserInterface.runModel(&quot;children&quot;, { parentNode: document.body });
+<pre class="prettyprint source lang-javascript"><code>UserInterface.runModel(&quot;children&quot;, { parentNode: document.body });
 </code></pre>
 <p>Output:</p>
 <pre class="prettyprint source lang-html"><code>&lt;body>
-	&lt;div class=&quot;model&quot;>
-		&lt;div class=&quot;child&quot;>My first child&lt;/div>
-	&lt;/div>
+  &lt;div class=&quot;model&quot;>
+    &lt;div class=&quot;child&quot;>My first child&lt;/div>
+  &lt;/div>
 &lt;/body>
 </code></pre>
 <h4 id="callback">Callback</h4>
@@ -134,17 +134,17 @@ It is used when you want to echo some data in your model.</p>
 <p>For example here, we have a model called <code>echomodel</code> that has the <code>callback</code> property. This property works the same as the <code>properties</code> property does except that an extra step is added before your model is ran.
 The <code>callback</code> will return a <code>properties</code> object accordingly to the data you passed through <code>runModel</code>.</p>
 <p><code>src/userinterface/echomodel.js</code></p>
-<pre class="prettyprint source lang-js"><code>UserInterface.model(
-	name: &quot;echomodel&quot;,
-	method: UserInterface.appendChild,
-	callback: data => ({
-		tagName: &quot;p&quot;,
-		className: &quot;echomodel&quot;,
-		textContent: &quot;My &quot;+data.text+&quot; model&quot;
-	})
+<pre class="prettyprint source lang-javascript"><code>UserInterface.model(
+  name: &quot;echomodel&quot;,
+  method: UserInterface.appendChild,
+  callback: data => ({
+    tagName: &quot;p&quot;,
+    className: &quot;echomodel&quot;,
+    textContent: &quot;My &quot;+data.text+&quot; model&quot;
+  })
 );
 </code></pre>
-<pre class="prettyprint source lang-js"><code>UserInterface.runModel(&quot;echomodel&quot;, { parentNode: document.body, data: {&quot;text&quot;: &quot;echo&quot; } });
+<pre class="prettyprint source lang-javascript"><code>UserInterface.runModel(&quot;echomodel&quot;, { parentNode: document.body, data: {&quot;text&quot;: &quot;echo&quot; } });
 </code></pre>
 <p>Output:</p>
 <pre class="prettyprint source lang-html"><code>&lt;p class=&quot;echomodel&quot;>My echo model&lt;/p>
@@ -161,19 +161,19 @@ The <code>callback</code> will return a <code>properties</code> object according
 That means if you want to add a listener to an Element that's where you will be doing it.</p>
 <p>In this example we will change the textContent of our model root element.</p>
 <p><code>src/userinterface/button.js</code></p>
-<pre class="prettyprint source lang-js"><code>UserInterface.model({
-	name: &quot;button&quot;,
-	method: UserInterface.appendChild,
-	properties: {
-		tagName: &quot;button&quot;
-	}
+<pre class="prettyprint source lang-javascript"><code>UserInterface.model({
+  name: &quot;button&quot;,
+  method: UserInterface.appendChild,
+  properties: {
+    tagName: &quot;button&quot;
+  }
 });
 
 UserInterface.bind(&quot;button&quot;, function(element) {
-	element.textContent = &quot;bound&quot;;
+  element.textContent = &quot;bound&quot;;
 });
 </code></pre>
-<pre class="prettyprint source lang-js"><code>UserInterface.runModel(&quot;button&quot;, { parentNode: document.body });
+<pre class="prettyprint source lang-javascript"><code>UserInterface.runModel(&quot;button&quot;, { parentNode: document.body });
 </code></pre>
 <p>Output:</p>
 <pre class="prettyprint source lang-html"><code>&lt;button>bound&lt;/button>
@@ -215,22 +215,22 @@ That's where you want to hide the complicated stuff.</p>
 <p>In this example we are creating and running a model called <code>myModel</code> that will listen for the event <code>greeting</code> on through the <code>application</code> context.</p>
 <p>A Context represent a reserved area (a channel) that events will be bound to, they're often represented as an instance of an object but could pretty much be anything.</p>
 <p><code>src/userinterface/my-model.js</code></p>
-<pre class="prettyprint source lang-js"><code>UserInterface.model({
-	name: &quot;myModel&quot;,
-	method: UserInterface.appendChild,
-	properties: {
-		tagName: &quot;div&quot;
-	}
+<pre class="prettyprint source lang-javascript"><code>UserInterface.model({
+  name: &quot;myModel&quot;,
+  method: UserInterface.appendChild,
+  properties: {
+    tagName: &quot;div&quot;
+  }
 });
 UserInterface.bind(&quot;myModel&quot;, function(element, application) {
 
-	UserInterface.listen(application, &quot;greeting&quot;, async (message) => {
-		console.log(message)
-	})
+  UserInterface.listen(application, &quot;greeting&quot;, async (message) => {
+    console.log(message)
+  })
 
 });
 </code></pre>
-<pre class="prettyprint source lang-js"><code>const application = {}
+<pre class="prettyprint source lang-javascript"><code>const application = {}
 
 UserInterface.runModel(&quot;myModel&quot;, { parentNode: document.body, bindingArgs: [application] });
 </code></pre>
@@ -239,20 +239,20 @@ UserInterface.runModel(&quot;myModel&quot;, { parentNode: document.body, binding
 <p>In the previous example we setup a <code>greeting</code> listener on <code>application</code>.</p>
 <p>Now, let's try to announce to the event.</p>
 <p><code>src/userinterface/another-model.js</code></p>
-<pre class="prettyprint source lang-js"><code>UserInterface.model({
-	name: &quot;anotherModel&quot;,
-	method: UserInterface.appendChild,
-	properties: {
-		tagName: &quot;div&quot;
-	}
+<pre class="prettyprint source lang-javascript"><code>UserInterface.model({
+  name: &quot;anotherModel&quot;,
+  method: UserInterface.appendChild,
+  properties: {
+    tagName: &quot;div&quot;
+  }
 });
 UserInterface.bind(&quot;anotherModel&quot;, function(element, application) {
 
-	UserInterface.announce(application, &quot;greeting&quot;, &quot;Hello!&quot;);
+  UserInterface.announce(application, &quot;greeting&quot;, &quot;Hello!&quot;);
 
 });
 </code></pre>
-<pre class="prettyprint source lang-js"><code>const application = {}
+<pre class="prettyprint source lang-javascript"><code>const application = {}
 
 UserInterface.runModel(&quot;myModel&quot;, { parentNode: document.body, bindingArgs: [application] });
 UserInterface.runModel(&quot;anotherModel&quot;, { parentNode: document.body, bindingArgs: [application] });
@@ -264,15 +264,15 @@ UserInterface.runModel(&quot;anotherModel&quot;, { parentNode: document.body, bi
 <p>In this example, we create a listener <code>message</code> and remove it whenever the event <code>done</code> is emitted.</p>
 <pre class="prettyprint source lang-javascript"><code>UserInterface.bind(&quot;myDynamicModel&quot;, function(element, application) {
 
-	const _listeners = []
+  const _listeners = []
 
-	_listeners.push(UserInterface.listen(application, &quot;message&quot;, async data => {
-		console.log(data)
-	}))
+  _listeners.push(UserInterface.listen(application, &quot;message&quot;, async data => {
+    console.log(data)
+  }))
 
-	_listeners(UserInterface.listen(application, &quot;done&quot;, async () => {
-		_listeners.forEach(listener => UserInterface.removeListener(listener))
-	}))
+  _listeners(UserInterface.listen(application, &quot;done&quot;, async () => {
+    _listeners.forEach(listener => UserInterface.removeListener(listener))
+  }))
 
 })
 </code></pre>
@@ -309,7 +309,7 @@ UserInterface.runModel(&quot;anotherModel&quot;, { parentNode: document.body, bi
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.7</a> on Mon Oct 18 2021 19:59:10 GMT+0000 (Coordinated Universal Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.7</a> on Mon Oct 18 2021 20:08:04 GMT+0000 (Coordinated Universal Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>
