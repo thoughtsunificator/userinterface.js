@@ -1,8 +1,6 @@
 # userinterface.js
 
-Small library to build front-end apps.
-
-userinterface.js was built around the idea that logic relating to how the visual looks and how the visual works should be distinguished.
+userinterface.js is a front-end library built around the idea that logic relating to how the visual looks and how the visual works should be distinguished.
 
 ## Getting started
 
