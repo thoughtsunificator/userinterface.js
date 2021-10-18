@@ -39,13 +39,13 @@ This model uses the `textContent`, `className` and `tagName` propertie however y
 ``src/userinterface/simplemodel.js``
 ```js
 UserInterface.model({
-	name: "simplemodel",
-	method: UserInterface.appendChild,
-	properties: {
-		tagName: "li", // required
-		className: "simplemodel",
-		textContent: "My first simple model"
-	}
+  name: "simplemodel",
+  method: UserInterface.appendChild,
+  properties: {
+    tagName: "li", // required
+    className: "simplemodel",
+    textContent: "My first simple model"
+  }
 });
 ```
 
@@ -55,7 +55,7 @@ UserInterface.runModel("simplemodel", { parentNode: document.querySelector("ul")
 Output:
 ```html
 <ul>
-	<li class="simplemodel">My first simple model</li>
+  <li class="simplemodel">My first simple model</li>
 </ul>
 ```
 
@@ -67,20 +67,20 @@ The ```children``` property is here for that, it is an Array where you can speci
 ``src/userinterface/children.js``
 ```js
 UserInterface.model({
-	name: "children",
-	method: UserInterface.appendChild,
-	properties: {
-		tagName: "div",
-		className: "model",
-		children: [
-			{
-				tagName: "div",
-				className: "child",
-				textContent: "My first child"
-				// and so on..
-			}
-		]
-	}
+  name: "children",
+  method: UserInterface.appendChild,
+  properties: {
+    tagName: "div",
+    className: "model",
+    children: [
+      {
+        tagName: "div",
+        className: "child",
+        textContent: "My first child"
+        // and so on..
+      }
+    ]
+  }
 });
 ```
 
@@ -90,9 +90,9 @@ UserInterface.runModel("children", { parentNode: document.body });
 Output:
 ```html
 <body>
-	<div class="model">
-		<div class="child">My first child</div>
-	</div>
+  <div class="model">
+    <div class="child">My first child</div>
+  </div>
 </body>
 ```
 #### Callback
@@ -106,13 +106,13 @@ The ```callback``` will return a ```properties``` object accordingly to the data
 ``src/userinterface/echomodel.js``
 ```js
 UserInterface.model(
-	name: "echomodel",
-	method: UserInterface.appendChild,
-	callback: data => ({
-		tagName: "p",
-		className: "echomodel",
-		textContent: "My "+data.text+" model"
-	})
+  name: "echomodel",
+  method: UserInterface.appendChild,
+  callback: data => ({
+    tagName: "p",
+    className: "echomodel",
+    textContent: "My "+data.text+" model"
+  })
 );
 ```
 
@@ -145,15 +145,15 @@ In this example we will change the textContent of our model root element.
 ``src/userinterface/button.js``
 ```js
 UserInterface.model({
-	name: "button",
-	method: UserInterface.appendChild,
-	properties: {
-		tagName: "button"
-	}
+  name: "button",
+  method: UserInterface.appendChild,
+  properties: {
+    tagName: "button"
+  }
 });
 
 UserInterface.bind("button", function(element) {
-	element.textContent = "bound";
+  element.textContent = "bound";
 });
 ```
 
@@ -208,17 +208,17 @@ A Context represent a reserved area (a channel) that events will be bound to, th
 ``src/userinterface/my-model.js``
 ```js
 UserInterface.model({
-	name: "myModel",
-	method: UserInterface.appendChild,
-	properties: {
-		tagName: "div"
-	}
+  name: "myModel",
+  method: UserInterface.appendChild,
+  properties: {
+    tagName: "div"
+  }
 });
 UserInterface.bind("myModel", function(element, application) {
 
-	UserInterface.listen(application, "greeting", async (message) => {
-		console.log(message)
-	})
+  UserInterface.listen(application, "greeting", async (message) => {
+    console.log(message)
+  })
 
 });
 ```
@@ -241,15 +241,15 @@ Now, let's try to announce to the event.
 ``src/userinterface/another-model.js``
 ```js
 UserInterface.model({
-	name: "anotherModel",
-	method: UserInterface.appendChild,
-	properties: {
-		tagName: "div"
-	}
+  name: "anotherModel",
+  method: UserInterface.appendChild,
+  properties: {
+    tagName: "div"
+  }
 });
 UserInterface.bind("anotherModel", function(element, application) {
 
-	UserInterface.announce(application, "greeting", "Hello!");
+  UserInterface.announce(application, "greeting", "Hello!");
 
 });
 ```
@@ -274,15 +274,15 @@ In this example, we create a listener ``message`` and remove it whenever the eve
 ```javascript
 UserInterface.bind("myDynamicModel", function(element, application) {
 
-	const _listeners = []
+  const _listeners = []
 
-	_listeners.push(UserInterface.listen(application, "message", async data => {
-		console.log(data)
-	}))
+  _listeners.push(UserInterface.listen(application, "message", async data => {
+    console.log(data)
+  }))
 
-	_listeners(UserInterface.listen(application, "done", async () => {
-		_listeners.forEach(listener => UserInterface.removeListener(listener))
-	}))
+  _listeners(UserInterface.listen(application, "done", async () => {
+    _listeners.forEach(listener => UserInterface.removeListener(listener))
+  }))
 
 })
 ```
