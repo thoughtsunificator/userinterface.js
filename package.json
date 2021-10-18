@@ -1,6 +1,6 @@
 {
 	"name": "userinterface.js",
-	"version": "1.4.6",
+	"version": "1.4.7",
 	"scripts": {
 		"test": "nodeunit",
 		"generate-docs": "jsdoc --configure .jsdoc.json --verbose"
