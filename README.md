@@ -37,7 +37,7 @@ Here we create a model named ```simple model``` using the [method](#methods) ```
 This model uses the `textContent`, `className` and `tagName` propertie however you might use any Element properties the DOM API offers.
 
 ``src/userinterface/simplemodel.js``
-```js
+```javascript
 UserInterface.model({
   name: "simplemodel",
   method: UserInterface.appendChild,
@@ -49,7 +49,7 @@ UserInterface.model({
 });
 ```
 
-```js
+```javascript
 UserInterface.runModel("simplemodel", { parentNode: document.querySelector("ul") });
 ```
 Output:
@@ -65,7 +65,7 @@ In the previous example we created a simple model, but what if we wanted to do m
 The ```children``` property is here for that, it is an Array where you can specify child elements.
 
 ``src/userinterface/children.js``
-```js
+```javascript
 UserInterface.model({
   name: "children",
   method: UserInterface.appendChild,
@@ -84,7 +84,7 @@ UserInterface.model({
 });
 ```
 
-```js
+```javascript
 UserInterface.runModel("children", { parentNode: document.body });
 ```
 Output:
@@ -104,7 +104,7 @@ For example here, we have a model called ```echomodel``` that has the ```callbac
 The ```callback``` will return a ```properties``` object accordingly to the data you passed through ```runModel```.
 
 ``src/userinterface/echomodel.js``
-```js
+```javascript
 UserInterface.model(
   name: "echomodel",
   method: UserInterface.appendChild,
@@ -116,7 +116,7 @@ UserInterface.model(
 );
 ```
 
-```js
+```javascript
 UserInterface.runModel("echomodel", { parentNode: document.body, data: {"text": "echo" } });
 ```
 
@@ -143,7 +143,7 @@ That means if you want to add a listener to an Element that's where you will be 
 In this example we will change the textContent of our model root element.
 
 ``src/userinterface/button.js``
-```js
+```javascript
 UserInterface.model({
   name: "button",
   method: UserInterface.appendChild,
@@ -157,7 +157,7 @@ UserInterface.bind("button", function(element) {
 });
 ```
 
-```js
+```javascript
 UserInterface.runModel("button", { parentNode: document.body });
 ```
 
@@ -168,19 +168,19 @@ Output:
 
 ### Methods
 
-- ```appendChild``` Append your model to the target
+- ``appendChild`` Append your model to the target
 
-- ```insertBefore``` Insert your model before the target
+- ``insertBefore`` Insert your model before the target
 
-- ```removeElement``` Remove the target
+- ``removeElement`` Remove the target
 
-- ```replaceElement``` Replace the target with your model
+- ``replaceElement`` Replace the target with your model
 
-- ```updateElement``` Update the target according to your model
+- ``updateElement`` Update the target according to your model
 
-- ```wrapElement``` Wrap the target inside your model
+- ``wrapElement`` Wrap the target inside your model
 
-- ```removeListeners``` Remove the listeners of the target
+- ``removeListeners`` Remove the listeners of the target
 
 ### Objects
 
@@ -206,7 +206,7 @@ In this example we are creating and running a model called ```myModel``` that wi
 A Context represent a reserved area (a channel) that events will be bound to, they're often represented as an instance of an object but could pretty much be anything.
 
 ``src/userinterface/my-model.js``
-```js
+```javascript
 UserInterface.model({
   name: "myModel",
   method: UserInterface.appendChild,
@@ -224,7 +224,7 @@ UserInterface.bind("myModel", function(element, application) {
 ```
 
 
-```js
+```javascript
 const application = {}
 
 UserInterface.runModel("myModel", { parentNode: document.body, bindingArgs: [application] });
@@ -239,7 +239,7 @@ In the previous example we setup a ``greeting`` listener on ``application``.
 Now, let's try to announce to the event.
 
 ``src/userinterface/another-model.js``
-```js
+```javascript
 UserInterface.model({
   name: "anotherModel",
   method: UserInterface.appendChild,
@@ -254,7 +254,7 @@ UserInterface.bind("anotherModel", function(element, application) {
 });
 ```
 
-```js
+```javascript
 const application = {}
 
 UserInterface.runModel("myModel", { parentNode: document.body, bindingArgs: [application] });
