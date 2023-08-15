@@ -289,7 +289,7 @@ UserInterface.bind("myDynamicModel", function(element, application) {
 
 ## API
 
-You can read the API by visiting [https://thoughtsunificator.github.io/userinterface.js](https://thoughtsunificator.github.io/userinterface.js).
+You can read the API by visiting [http://userinterface-js.unificator.me](http://userinterface-js.unificator.me).
 
 ## Common errors
 
